@@ -10,6 +10,7 @@ class OpenMeteoFetcher(BaseFetcher):
         self.lat = lat
         self.lon = lon
 
+    # returns json
     def fetch_7day_forecast(self, city: str, days: int = 7) -> Dict[str, Any]:
 
         hourly_vars = [
@@ -18,7 +19,7 @@ class OpenMeteoFetcher(BaseFetcher):
             "precipitation",
             "wind_speed_10m",
         ]
-
+        # open meteo based on coordination
         params = {
             "latitude": self.lat,
             "longitude": self.lon,
@@ -28,6 +29,6 @@ class OpenMeteoFetcher(BaseFetcher):
         }
 
         responce = requests.get(self.BASE_URL, params=params, timeout=10)
-        responce.raise_for_status()
+        responce.raise_for_status() # throw err if not 200
 
         return responce.json()
