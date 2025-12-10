@@ -1,5 +1,5 @@
 from typing import Dict, Any, List
-from config.initialier import (
+from config.initializer import (
     DEFAULT_CITY,
     DEFAULT_DAYS,
     DEFAULT_LAT,

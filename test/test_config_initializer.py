@@ -20,12 +20,12 @@ def test_api_keys_structure():
     assert isinstance(API_KEYS, dict)
     # does not care if is none. only check existance
     expected_keys = {
-        "weatehrapi",
+        "weatherapi",
         "visualcrossing",
         "openweather",
         "tomorrow",
         "weatherbit",
-        "stromglass",
+        "stormglass",
     }
     # all the keys must in API.KEYS
     assert expected_keys.issubset(API_KEYS.keys())

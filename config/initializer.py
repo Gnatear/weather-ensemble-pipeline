@@ -9,5 +9,5 @@ API_KEYS = {
     "openweather": None,
     "tomorrow": None,
     "weatherbit": None,
-    "stromglass": None,
+    "stormglass": None,
 }
