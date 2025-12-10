@@ -25,10 +25,10 @@ class OpenMeteoFetcher(BaseFetcher):
             "longitude": self.lon,
             "hourly": ",".join(hourly_vars),
             "forecast_days": days,
-            "timezone": "zuto",
+            "timezone": "auto",
         }
 
-        responce = requests.get(self.BASE_URL, params=params, timeout=10)
-        responce.raise_for_status() # throw err if not 200
+        response = requests.get(self.BASE_URL, params=params, timeout=10)
+        response.raise_for_status() # throw err if not 200
 
-        return responce.json()
+        return response.json()

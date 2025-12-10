@@ -18,7 +18,7 @@ class DummyResponse:
 def test_open_meteo_fetcher_calls_requests_with_correct_params(monkeypatch: pytest.MonkeyPatch):
     captured_params = {}
 
-    def fake_get(url: str, params: Dict[str, Any], timeoout: int = 10):
+    def fake_get(url: str, params: Dict[str, Any], timeout: int = 10, **kwargs: Any):
         captured_params["url"] = url
         captured_params["params"] = params
         dummy_json = {"ok": True, "hourly": {"time": [], "temperature_2m": []}}
