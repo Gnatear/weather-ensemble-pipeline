@@ -29,44 +29,44 @@ not sure what's the problem. not sure it's fixed because of those files or somet
 ## environment.txt
 ## config/
 ### -- initializer.py
----- default flobal settings and API keys
------- DEFAULT_CITY - Halifax
------- DEFAULT_DAYS - 7
------- DEFAULT_LAT, DEFAULT_LON - coordinates
+- default flobal settings and API keys
+* DEFAULT_CITY - Halifax
+* DEFAULT_DAYS - 7
+* DEFAULT_LAT, DEFAULT_LON - coordinates
 ## models/
 ### -- normalizer.py
----- class WeatherPoint - unified weather record
------- source, timestamp, temperature_c, wind_speed_ms, humidity, precipitation_mm, condition_code
----- normalize_open_meteo(raw, source_name) - convers open meteo raw json into WeatherPoint opjects list
------- extracts hourly arrays, aligns values by index, skips missing temperature values, returns normalized points
+- class WeatherPoint - unified weather record
+* source, timestamp, temperature_c, wind_speed_ms, humidity, precipitation_mm, condition_code
+- normalize_open_meteo(raw, source_name) - convers open meteo raw json into WeatherPoint opjects list
+* extracts hourly arrays, aligns values by index, skips missing temperature values, returns normalized points
 ## fetchers/
 ### -- fetcher.py
----- defines the base class(abstract) for all weather fetchers
------- class Base Fetcher(ABC) require:
--------- fetch_7days_forecast(city, days) - returns raw json from api 
+- defines the base class(abstract) for all weather fetchers
+* class Base Fetcher(ABC) require:
+* - fetch_7days_forecast(city, days) - returns raw json from api 
 ### -- open_meteo.py
----- fetches open meteo api
------- __init__(lat, lon) - stores coordinates for api queries
------- fetch_7day_forecast(city, days) - calls open-meteo forecast endpoint, requests hourly temperature, humidity, precipitation, wind. returns raw json
+- fetches open meteo api
+* __init__(lat, lon) - stores coordinates for api queries
+* fetch_7day_forecast(city, days) - calls open-meteo forecast endpoint, requests hourly temperature, humidity, precipitation, wind. returns raw json
 ### -- weatherapi_fetcher.py
----- empty for now
+- empty for now
 ### -- visualcrossing_fetcher.py
----- empty for now
+- empty for now
 ## stats/
 ### -- aggregator.py
----- statistical methods for ensemble analysis
------- aggregate_by_timestamp(points) - groups WeatherPoint objs by ts
------- compute_mean_ds(values) - get mean, sd
------- detect_outliers(values, z_threhold) - uses z-score. z = (value - mean) / sd, flags values when |z| > threshold, returns a list of booleans
+- statistical methods for ensemble analysis
+* aggregate_by_timestamp(points) - groups WeatherPoint objs by ts
+* compute_mean_ds(values) - get mean, sd
+* detect_outliers(values, z_threhold) - uses z-score. z = (value - mean) / sd, flags values when |z| > threshold, returns a list of booleans
 ## pipeline/
 ### -- run_pipeline.py
------- run(city, days)
--------- load defaults
--------- call all fetchers
--------- normalize raw data from api
--------- group data by ts
--------- compute mean, sd, outlier(flag)
--------- return: structured dictionary which suppossed to look like this: 
+- run(city, days)
+* - load defaults
+* - call all fetchers
+* - normalize raw data from api
+* - group data by ts
+* - compute mean, sd, outlier(flag)
+* - return: structured dictionary which suppossed to look like this: 
 {
   "city": "...",
   "days": ...,
@@ -85,10 +85,10 @@ not sure what's the problem. not sure it's fixed because of those files or somet
   ]
 }
 ## main.py
----- command line entry point
------- parse_args() - parses: city, days, output-json
------- save_json(result, path) - writes pipeline output to disk
------- main() - parse CLI agrs, run pipeline, print summary, optionally save json as output
+- command line entry point
+* parse_args() - parses: city, days, output-json
+* save_json(result, path) - writes pipeline output to disk
+* main() - parse CLI agrs, run pipeline, print summary, optionally save json as output
 ---------------------------------------------------------------
 # update log
 ### Dec 10, 2025
