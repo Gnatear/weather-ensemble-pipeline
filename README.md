@@ -55,9 +55,9 @@ not sure what's the problem. not sure it's fixed because of those files or somet
 ## stats/
 ### -- aggregator.py
 - statistical methods for ensemble analysis
-* aggregate_by_timestamp(points) - groups WeatherPoint objs by ts
-* compute_mean_ds(values) - get mean, sd
-* detect_outliers(values, z_threhold) - uses z-score. z = (value - mean) / sd, flags values when |z| > threshold, returns a list of booleans
+* - aggregate_by_timestamp(points) - groups WeatherPoint objs by ts
+* - compute_mean_ds(values) - get mean, sd
+* - detect_outliers(values, z_threhold) - uses z-score. z = (value - mean) / sd, flags values when |z| > threshold, returns a list of booleans
 ## pipeline/
 ### -- run_pipeline.py
 - run(city, days)
@@ -86,9 +86,9 @@ not sure what's the problem. not sure it's fixed because of those files or somet
 }
 ## main.py
 - command line entry point
-* parse_args() - parses: city, days, output-json
-* save_json(result, path) - writes pipeline output to disk
-* main() - parse CLI agrs, run pipeline, print summary, optionally save json as output
+* - parse_args() - parses: city, days, output-json
+* - save_json(result, path) - writes pipeline output to disk
+* - main() - parse CLI agrs, run pipeline, print summary, optionally save json as output
 ---------------------------------------------------------------
 # update log
 ### Dec 10, 2025
