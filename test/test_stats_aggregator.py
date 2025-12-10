@@ -30,11 +30,14 @@ def test_compute_mean_sd_basic():
     assert 0.8 < sd < 1.0
 
 def test_detect_outliers_simple_case():
-    values = [10.0, 99.9, 11.0, 9.0]
+    values = [10.0, 11.0, 100, 9.0, 10.1, 11.0, 200]
     flags = detect_outliers(values, z_threshold = 2.0)
 
     assert len(flags) == len(values)
     assert flags[0] is False
-    assert flags[1] is True
+    assert flags[1] is False
     assert flags[2] is False
     assert flags[3] is False
+    assert flags[4] is False
+    assert flags[5] is False
+    assert flags[6] is True

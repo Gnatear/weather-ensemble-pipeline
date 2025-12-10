@@ -31,11 +31,11 @@ def detect_outliers(values: List[float], z_threshold: float = 2.5) -> List[bool]
     
     arr = np.array(values, dtype = float)
     mean = arr.mean()
-    sd = arr.std(ddof = 0)
+    sd = arr.std(ddof = 1)
 
-    if sd == 0 or np.isnan(sd):
+    if sd == 0:
         return [False] * len(values)
     
     z_scores = (arr - mean) / sd
 
-    return [abs(z) > z_threshold for z in z_scores]
+    return [bool(abs(z) > z_threshold) for z in z_scores]
