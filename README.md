@@ -1,14 +1,14 @@
 # weather-ensemble-pipeline v 1.0.1
 This repo is a experimental ETL data pipeline to fetch weather status from multiple platforms, and ensemble them for analysing use. At the current version(main branch), it can fetch data from open meteo api, and caculate mean, sd, outliers. I'm still working on adding features and optimizing.
 ## how to run: 
-cd ~/Projects/weather-ensemble-pipeline
-source .venv/bin/activate
-python main.py --city Halifax --days 7 --output-json output/result.json
+* cd ~/Projects/weather-ensemble-pipeline
+* source .venv/bin/activate
+* python main.py --city Halifax --days 7 --output-json output/result.json
 ## how to install environment:
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r environments.txt
-python main.py
+* python3 -m venv .venv
+* source .venv/bin/activate
+* pip install -r environments.txt
+* python main.py
 ## how to run test:
 pytest
 pytest test/test_....py
@@ -30,20 +30,20 @@ not sure what's the problem. not sure it's fixed because of those files or somet
 ## config/
 ### -- initializer.py
 - default flobal settings and API keys
-* DEFAULT_CITY - Halifax
-* DEFAULT_DAYS - 7
-* DEFAULT_LAT, DEFAULT_LON - coordinates
+* * DEFAULT_CITY - Halifax
+* * DEFAULT_DAYS - 7
+* * DEFAULT_LAT, DEFAULT_LON - coordinates
 ## models/
 ### -- normalizer.py
 - class WeatherPoint - unified weather record
-* source, timestamp, temperature_c, wind_speed_ms, humidity, precipitation_mm, condition_code
+* * source, timestamp, temperature_c, wind_speed_ms, humidity, precipitation_mm, condition_code
 - normalize_open_meteo(raw, source_name) - convers open meteo raw json into WeatherPoint opjects list
-* extracts hourly arrays, aligns values by index, skips missing temperature values, returns normalized points
+* * extracts hourly arrays, aligns values by index, skips missing temperature values, returns normalized points
 ## fetchers/
 ### -- fetcher.py
 - defines the base class(abstract) for all weather fetchers
 * class Base Fetcher(ABC) require:
-* - fetch_7days_forecast(city, days) - returns raw json from api 
+* * fetch_7days_forecast(city, days) - returns raw json from api 
 ### -- open_meteo.py
 - fetches open meteo api
 * __init__(lat, lon) - stores coordinates for api queries
@@ -55,18 +55,18 @@ not sure what's the problem. not sure it's fixed because of those files or somet
 ## stats/
 ### -- aggregator.py
 - statistical methods for ensemble analysis
-* - aggregate_by_timestamp(points) - groups WeatherPoint objs by ts
-* - compute_mean_ds(values) - get mean, sd
-* - detect_outliers(values, z_threhold) - uses z-score. z = (value - mean) / sd, flags values when |z| > threshold, returns a list of booleans
+* * aggregate_by_timestamp(points) - groups WeatherPoint objs by ts
+* * compute_mean_ds(values) - get mean, sd
+* * detect_outliers(values, z_threhold) - uses z-score. z = (value - mean) / sd, flags values when |z| > threshold, returns a list of booleans
 ## pipeline/
 ### -- run_pipeline.py
 - run(city, days)
-* - load defaults
-* - call all fetchers
-* - normalize raw data from api
-* - group data by ts
-* - compute mean, sd, outlier(flag)
-* - return: structured dictionary which suppossed to look like this: 
+* * load defaults
+* * call all fetchers
+* * normalize raw data from api
+* * group data by ts
+* * compute mean, sd, outlier(flag)
+* * return: structured dictionary which suppossed to look like this: 
 {
   "city": "...",
   "days": ...,
@@ -86,9 +86,9 @@ not sure what's the problem. not sure it's fixed because of those files or somet
 }
 ## main.py
 - command line entry point
-* - parse_args() - parses: city, days, output-json
-* - save_json(result, path) - writes pipeline output to disk
-* - main() - parse CLI agrs, run pipeline, print summary, optionally save json as output
+* * parse_args() - parses: city, days, output-json
+* * save_json(result, path) - writes pipeline output to disk
+* * main() - parse CLI agrs, run pipeline, print summary, optionally save json as output
 ---------------------------------------------------------------
 # update log
 ### Dec 10, 2025
