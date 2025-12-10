@@ -23,9 +23,9 @@ def _fake_pipeline_result() -> Dict[str, Any]:
     }
 def test_main_basic(
         monkeypatch: pytest.MonkeyPatch,
-        capsys: pytest.CaptureFicture[str],
+        capsys: pytest.CaptureFixture[str],
     ) -> None:
-    def fake_run(city:str | None = None, days: int | None = None) -> Dict[str, Any]:
+    def fake_run(city: Optional[str] = None, days: Optional[int] = None) -> Dict[str, Any]:
         return _fake_pipeline_result()
     
     import pipeline.run_pipeline as pipeline_module
@@ -42,4 +42,4 @@ def test_main_basic(
     assert "City: Halifax" in out
     assert "Days: 7" in out
     assert "Sources used: 1" in out
-    assert "First 5 timestamps" in out
+    assert "First 24 timestamps" in out

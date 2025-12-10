@@ -41,7 +41,7 @@ def parse_args() -> argparse.Namespace:
         help = f"Optional save as JSON under output/s",
     )
 
-    return parser.add_args()
+    return parser.parse_args()
 
 def save_json(result: Dict[str, Any], path_str: str) -> None:
     path = Path(path_str)
@@ -70,7 +70,7 @@ def main() -> None:
     print("-------------------------")
     print("First 24 timestamps (temperature ensemble):")
 
-    for item in result["timestamps"][:5]:
+    for item in result["timestamps"][:24]:
         ts = item["timestamp"]
         temp_info = item["temperature_c"]
         print(
