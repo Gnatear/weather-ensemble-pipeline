@@ -6,7 +6,7 @@ from fetchers.open_meteo import OpenMeteoFetcher
 def _fake_raw_open_meteo() -> Dict[str, Any]:
     return{
         "hourly":{
-            "time": ["2025-12-10T10:00", "2025-12-10T11:00"],
+            "time": ["2025-01-01T10:00", "2025-01-01T11:00"],
             "temperature_2m": [1.0, 3.0],
             "relative_humidity_2m": [80, 82],
             "precipitation": [0.0, 0.2],

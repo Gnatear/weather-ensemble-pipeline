@@ -1,4 +1,4 @@
-from typing import Dict, Any, List
+from typing import Dict, Any, List, Optional
 from config.initializer import (
     DEFAULT_CITY,
     DEFAULT_DAYS,
@@ -13,7 +13,7 @@ from stats.aggregator import (
     detect_outliers,
 )
 
-def run(city: str | None = None, days: int | None = None) -> Dict [str, Any]:
+def run(city: Optional[str] = None, days: Optional[int] = None) -> Dict[str, Any]:
     
     city = city or DEFAULT_CITY
     days = days or DEFAULT_DAYS
@@ -34,7 +34,7 @@ def run(city: str | None = None, days: int | None = None) -> Dict [str, Any]:
         mean_temp, sd_temp = compute_mean_sd(temps)
         outlier_flags = detect_outliers(temps, z_threshold = 2.5)
 
-        outlier_sources = [pts[i].source for i, is_outlier in neumerate(outlier_flags) if is_outlier]
+        outlier_sources = [pts[i].source for i, is_outlier in enumerate(outlier_flags) if is_outlier]
 
         timestamps_stats.append(
             {

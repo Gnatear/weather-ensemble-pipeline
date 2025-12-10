@@ -19,7 +19,7 @@ def compute_mean_sd(values: List[float]) -> Tuple[float, float]:
     arr = np.array(values, dtype = float)
     mean = float(arr.mean())
     #sd for sample
-    sd = float(arr.std(ddof = 1))
+    sd = float(arr.std(ddof = 0))
 
     return mean, sd
 
@@ -33,7 +33,7 @@ def detect_outliers(values: List[float], z_threshold: float = 2.5) -> List[bool]
     mean = arr.mean()
     sd = arr.std(ddof = 0)
 
-    if sd == 0:
+    if sd == 0 or np.isnan(sd):
         return [False] * len(values)
     
     z_scores = (arr - mean) / sd
