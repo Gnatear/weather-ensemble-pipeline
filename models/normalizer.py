@@ -8,7 +8,7 @@ class WeatherPoint:
     temperature_c: float #celsius
     wind_speed_ms: Optional[float] = None
     humidity: Optional[float] = None
-    predipitation_mm: Optional[float] = None
+    precipitation_mm: Optional[float] = None
     condition_code: Optional[str] = None #weather status
 
 # normalize open meteo
@@ -45,7 +45,7 @@ def normalize_open_meteo(raw: Dict[str, Any], source_name: str = "open_meteo") -
             continue
 
         point = WeatherPoint(
-            source = source_name
+            source = source_name,
             timestamp = ts,
             temperature_c = float(temp),
             wind_speed_ms = float(wind) if wind is not None else None,
