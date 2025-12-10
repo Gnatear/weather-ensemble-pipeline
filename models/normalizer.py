@@ -51,6 +51,7 @@ def normalize_open_meteo(raw: Dict[str, Any], source_name: str = "open_meteo") -
             wind_speed_ms = float(wind) if wind is not None else None,
             humidity = float(humidity) if humidity is not None else None,
             precipitation_mm = float(precipitation) if precipitation is not None else None,
+            condition_code = None,
         )
         point.append(point)
 
