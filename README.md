@@ -11,3 +11,6 @@ python main.py
 
 ## how to run test:
 pytest
+pytest test/test_....py
+## how to compile:
+python -m compileall

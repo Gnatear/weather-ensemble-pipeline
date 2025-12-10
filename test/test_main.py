@@ -1,7 +1,7 @@
 import pytest
 import main
 import sys
-from typing import Any, Dict
+from typing import Any, Dict, Optional
 
 def _fake_pipeline_result() -> Dict[str, Any]:
     return {
@@ -21,8 +21,10 @@ def _fake_pipeline_result() -> Dict[str, Any]:
             }
         ],
     }
-
-def test_main_basic(monkeypatch: pytest.MonkeyPatch, capsys.CaptureFicture[str]):
+def test_main_basic(
+        monkeypatch: pytest.MonkeyPatch,
+        capsys: pytest.CaptureFicture[str],
+    ) -> None:
     def fake_run(city:str | None = None, days: int | None = None) -> Dict[str, Any]:
         return _fake_pipeline_result()
     
