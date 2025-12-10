@@ -1,9 +1,9 @@
-from config.initialier import (
+from config.initializer import (
     DEFAULT_CITY,
     DEFAULT_DAYS,
     DEFAULT_LAT,
     DEFAULT_LON,
-    API_KEYS
+    API_KEYS,
 )
 
 def test_deafult_city_and_days():

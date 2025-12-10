@@ -5,4 +5,9 @@ DEFAULT_LON = -63.5752 #coordination of Halifax
 
 API_KEYS = {
     "weatherapi": None,
+    "visualcrossing": None,
+    "openweather": None,
+    "tomorrow": None,
+    "weatherbit": None,
+    "stromglass": None,
 }

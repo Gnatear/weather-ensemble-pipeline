@@ -14,3 +14,10 @@ pytest
 pytest test/test_....py
 ## how to compile:
 python -m compileall
+## if permission denied: test/....py
+test folder: chmod -R 755 test/
+single file: chmod 644 test/....py
+6 - rw
+4 - r
+4 - r
+single file: xattr -c test/....py
