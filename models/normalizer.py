@@ -1,7 +1,8 @@
 from dataclasses import dataclass
-from typing import Optional
+from typing import Optional, List, Dict, Any
 
 # normalize WeatherPoint format
+@dataclass
 class WeatherPoint:
     source: str #api
     timestamp: str #or date
@@ -26,7 +27,7 @@ def normalize_open_meteo(raw: Dict[str, Any], source_name: str = "open_meteo") -
     hourly = raw.get("hourly", {})
 
     times = hourly.get("time", [])
-    temps = hourly.get("relative_humidity_2m", [])
+    temps = hourly.get("temperature_2m", [])
     humidities = hourly.get("relative_humidity_2m", [])
     precipitations = hourly.get("precipitation", [])
     winds = hourly.get("wind_speed_10m", [])
@@ -35,7 +36,7 @@ def normalize_open_meteo(raw: Dict[str, Any], source_name: str = "open_meteo") -
 
     for i, ts in enumerate(times):
         # edge case
-        temp = temp[i] if i < len(temps) else None
+        temp = temps[i] if i < len(temps) else None
         humidity = humidities[i] if i < len(humidities) else None
         precipitation = precipitations[i] if i < len(precipitations) else None
         wind = winds[i] if i < len(winds) else None
@@ -53,6 +54,6 @@ def normalize_open_meteo(raw: Dict[str, Any], source_name: str = "open_meteo") -
             precipitation_mm = float(precipitation) if precipitation is not None else None,
             condition_code = None,
         )
-        point.append(point)
+        points.append(point)
 
     return points

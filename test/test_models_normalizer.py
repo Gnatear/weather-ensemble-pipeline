@@ -1,6 +1,6 @@
 from models.normalizer import WeatherPoint, normalize_open_meteo
 
-def test_weather_point_detaclass_basic():
+def test_weather_point_dataclass_basic():
     p = WeatherPoint(
         source = "test_api",
         timestamp = "2025-01-01T10:00",
