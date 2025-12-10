@@ -6,7 +6,7 @@ import logging
 from pathlib import Path
 from typing import Any, Dict
 from pipeline.run_pipeline import run as run_pipeline
-from config.initialier import DEFAULT_CITY, DEFAULT_DAYS
+from config.initializer import DEFAULT_CITY, DEFAULT_DAYS
 
 def setup_logging() -> None:
     logging.basicConfig(

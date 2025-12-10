@@ -2,7 +2,7 @@
 #ABC -> Abstract Base Class
 from abc import ABC, abstractmethod
 from typing import Any, Dict
-
 class BaseFetcher(ABC):
+    @abstractmethod
     def fetch_7day_forecast(self, city: str, days: int = 7) -> Dict[str, Any]:
-        pass
+        raise NotImplementedError
