@@ -13,7 +13,7 @@ This repo is a experimental ETL data pipeline to fetch weather status from multi
 * pytest
 * pytest test/test_....py
 ## how to delete data file
-* python pipeline/delete_last_time_data.py
+* python pipeline/delete_data_file.py
 ## how to compile:
 * python -m compileall
 ## if permission denied: test/....py:
